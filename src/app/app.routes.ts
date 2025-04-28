@@ -28,4 +28,3 @@ export const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent }, 
   { path: '**', redirectTo: '' }
 ];
-// Note: The `path: '**'` route should always be the last route in the array.
