@@ -1,0 +1,100 @@
+@use 'sass:color';
+
+.drug-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+
+  th {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    font-weight: bold;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: var(--color-bg);
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  a.view-details-button {
+    background-color: var(--color-primary);
+    color: #fff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+  
+  a.view-details-button:hover {
+    background-color: #1565c0;
+    transform: scale(1.05);
+  }
+  
+  a.view-details-button:active {
+    transform: scale(0.95);
+  }
+  
+  /* ✅ Optional: override for dark mode */
+  body.dark a.view-details-button {
+    background-color: var(--color-accent);
+    color: #000;
+  }
+
+  // Dark mode overrides
+  body.dark & {
+    th {
+      background-color: var(--color-primary);
+      color: var(--text-color-light);
+    }
+
+    td {
+      color: var(--text-color);
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #2a2a2a;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #1f1f1f;
+    }
+
+    tbody tr:hover {
+      background-color: #333;
+    }
+
+    a.view-details-button {
+      background-color: var(--accent-color, #90caf9);
+      color: #000;
+    }
+
+    a.view-details-button:hover {
+      background-color: color.adjust(#90caf9, $lightness: 5%);
+    }
+  }
+}

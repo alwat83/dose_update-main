@@ -1,0 +1,31 @@
+<div class="drug-details-container">
+  <div *ngIf="drug as d; else loadingOrError" class="card in-view">
+    <h2 class="drug-name">{{ d.name }}</h2>
+    <ul class="drug-info-list">
+      <li><strong>Description:</strong> {{ d.description }}</li>
+      <li><strong>Generic Dosage:</strong> {{ d.genericDosage }}</li>
+      <li><strong>Frequency:</strong> {{ d.frequency }}</li>
+      <li><strong>Indications:</strong> {{ d.indications }}</li>
+      <li><strong>Side Effects:</strong> {{ d.sideEffects }}</li>
+      <li><strong>Precautions:</strong> {{ d.precautions }}</li>
+      <li *ngIf="d.warnings"><strong>Warnings:</strong> {{ d.warnings }}</li>
+      <li *ngIf="d.interactions?.length">
+        <strong>Interactions:</strong>
+        {{ d.interactions!.join(', ') }}
+      </li>
+      <li *ngIf="d.drugClass?.length">
+        <strong>Drug Class:</strong>
+        {{ d.drugClass!.join(', ') }}
+      </li>
+    </ul>
+  </div>
+
+  <ng-template #loadingOrError>
+    <div class="card in-view">
+      <h2 *ngIf="errorMessage">❌ Error</h2>
+      <p *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <h2 *ngIf="!errorMessage">🔄 Loading...</h2>
+    </div>
+  </ng-template>
+</div>

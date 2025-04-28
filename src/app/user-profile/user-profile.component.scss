@@ -1,0 +1,148 @@
+.user-profile-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    inset 0 0 0.5px rgba(255, 255, 255, 0.05),
+    0 8px 20px rgba(0, 0, 0, 0.08);
+  animation: fadeInUp 0.5s ease forwards;
+  color: var(--text-color);
+}
+
+h2 {
+  text-align: center;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* ✅ Message styles */
+.success-message {
+  background-color: #d0f0d8;
+  color: #2e7d32;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #43a047;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.error-message {
+  background-color: #fdecea;
+  color: #c62828;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #e53935;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    input,
+    select {
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      background-color: #fff;
+      color: #000;
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 2px rgba(100, 149, 237, 0.3);
+      }
+    }
+
+    &.toggle-group {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      label {
+        margin: 0;
+      }
+
+      input[type='checkbox'] {
+        width: auto;
+      }
+    }
+  }
+
+  button {
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #1565c0;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .user-profile-container {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+
+  .profile-form {
+    gap: 1rem;
+
+    .form-group {
+      label {
+        font-size: 0.9rem;
+      }
+
+      input,
+      select {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.8rem;
+      }
+    }
+
+    button {
+      font-size: 0.95rem;
+      padding: 0.6rem 1rem;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+<div class="app-container">
+  <header class="app-header">
+    <div class="app-header-container">
+      <a href="/" class="logo-link">
+        <img src="assets/logo.png" alt="Dose Ninja Logo" class="logo" />
+      </a>
+
+      <!-- 👋 Greeting shown when logged in -->
+      <div *ngIf="isLoggedIn && userEmail" class="welcome-message">
+        Welcome back, {{ userEmail }}
+      </div>
+
+      <button (click)="toggleDarkMode()" class="theme-toggle-btn">
+        {{ isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+      </button>
+
+      <button class="hamburger-menu" (click)="toggleMenu()">&#9776;</button>
+
+      <nav class="app-nav" [class.active]="isMenuOpen">
+        <!-- Always show -->
+        <button [routerLink]="['/dashboard']">Dashboard</button>
+        <button [routerLink]="['/medication-search']">Medication Search</button>
+        <button [routerLink]="['/tracking-list']">Tracking List</button>
+        <button [routerLink]="['/dosage-correction']">Dosage Correction</button>
+
+        <!-- Show only if logged out -->
+        <button *ngIf="!isLoggedIn" [routerLink]="['/login']">Login</button>
+        <button *ngIf="!isLoggedIn" [routerLink]="['/register']">Register</button>
+
+        <!-- Show only if logged in -->
+        <button *ngIf="isLoggedIn" [routerLink]="['/profile']">Profile</button>
+        <button *ngIf="isLoggedIn" (click)="signOut()">Sign Out</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="app-content">
+    <router-outlet></router-outlet>
+  </div>
+
+  <footer>
+    <p>&copy; {{ currentYear }} Dose Ninja. All rights reserved.</p>
+    <a routerLink="/privacy-policy">Privacy Policy</a>
+  </footer>
+</div>

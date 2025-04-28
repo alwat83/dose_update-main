@@ -1,0 +1,33 @@
+<div class="home-layout">
+  <div class="hero-header">
+    <h1>Dose Ninja</h1>
+    <p class="subtext">Never forget if you took that pill</p>
+    <p class="welcome-msg" *ngIf="isLoggedIn">Welcome back, Ninja 👋</p>
+  </div>
+
+  <div class="module-grid">
+    <a *ngIf="!isLoggedIn" routerLink="/register" class="module-card register-card" title="Create a new account" #animatedCard>
+      <div class="card-icon">📝</div>
+      <div class="card-title">Register</div>
+      <div class="card-subtext">Create a Dose Ninja account</div>
+    </a>
+
+    <a *ngIf="!isLoggedIn" routerLink="/login" class="module-card login-card" title="Log in to your profile" #animatedCard>
+      <div class="card-icon">🔐</div>
+      <div class="card-title">Login</div>
+      <div class="card-subtext">Access your personalized dashboard</div>
+    </a>
+
+    <a *ngIf="isLoggedIn" routerLink="/dashboard" class="module-card dashboard-card" title="Your full medication overview" #animatedCard>
+      <div class="card-icon">📊</div>
+      <div class="card-title">Dashboard</div>
+      <div class="card-subtext">View trends and recent activity</div>
+    </a>
+
+    <a routerLink="/tracking-list" class="module-card tracking-card" title="See what's currently being tracked" #animatedCard>
+      <div class="card-icon">💊</div>
+      <div class="card-title">Tracking List</div>
+      <div class="card-subtext">Your current medication list</div>
+    </a>
+  </div>
+</div>

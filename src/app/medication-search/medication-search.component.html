@@ -1,0 +1,29 @@
+<div class="card in-view med-search-container">
+  <h2>Search for Medications</h2>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Enter drug name"
+      (input)="searchDrugs()"
+    />
+    <button (click)="searchDrugs()">Search</button>
+  </div>
+
+  <div *ngIf="searchResults.length > 0" class="results-section">
+    <h3>Search Results</h3>
+    <ul class="results-list">
+      <li *ngFor="let result of searchResults">
+        <a [routerLink]="['/drug-details', result.rxcui]" class="pill-button">
+          <strong>{{ result.name }}</strong><br />
+          <span class="result-description">{{ result.description }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="searchResults.length === 0 && searchTerm !== ''" class="no-results">
+    <p>No results found for "<em>{{ searchTerm }}</em>".</p>
+  </div>
+</div>
