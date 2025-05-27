@@ -12,6 +12,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { AdminTestComponent } from './admin-test.component'; 
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { UpgradeComponent } from './upgrade/upgrade.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'tracking-list', component: TrackingListComponent },
   { path: 'medication-search', component: MedicationSearchComponent },
   { path: 'dosage-correction', component: DosageCorrectionComponent },
+  { path: 'upgrade', component: UpgradeComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent }, // ✅ Comma added here
   { path: 'admin-test', component: AdminTestComponent }, 
   { path: 'forgot-password', component: ForgotPasswordComponent }, 
