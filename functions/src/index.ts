@@ -16,6 +16,7 @@ export const createCheckoutSession = onCall(
   },
   async (request) => {
     const { email, billingPeriod } = request.data;
+    console.log('createCheckoutSession invoked with:', { email, billingPeriod });
 
     if (!email || !billingPeriod) {
       throw new Error('Missing email or billing period');
@@ -32,6 +33,7 @@ export const createCheckoutSession = onCall(
         : 'price_1RU8iTCof4voLRAtVCWWJugK';
 
     try {
+      console.log('Calling stripe.checkout.sessions.create with:', { email, priceId });
       const session = await stripe.checkout.sessions.create({
         mode: 'subscription',
         payment_method_types: ['card'],
@@ -41,6 +43,7 @@ export const createCheckoutSession = onCall(
         cancel_url: 'https://preview.doseninja.com/upgrade?status=cancel',
       });
 
+      console.log('Stripe session created successfully:', session.url);
       return { url: session.url };
     } catch (err) {
       console.error('Stripe Checkout Error:', err);
