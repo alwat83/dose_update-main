@@ -2,17 +2,29 @@
   <h1>Upgrade to Dose Ninja Premium</h1>
   <p>Unlock powerful features to stay on top of your medications.</p>
 
+  <!-- Billing Toggle -->
   <div class="billing-toggle">
     <label>
-      <input type="radio" name="billing" value="monthly" [(ngModel)]="billingPeriod" />
+      <input
+        type="radio"
+        name="billing"
+        value="monthly"
+        [(ngModel)]="billingPeriod"
+      />
       Monthly
     </label>
     <label>
-      <input type="radio" name="billing" value="yearly" [(ngModel)]="billingPeriod" />
+      <input
+        type="radio"
+        name="billing"
+        value="yearly"
+        [(ngModel)]="billingPeriod"
+      />
       Yearly <span class="discount">(Save 20%)</span>
     </label>
   </div>
 
+  <!-- Plan Comparison -->
   <div class="plan-comparison">
     <div class="plan-card free">
       <h2>Free</h2>
@@ -35,7 +47,9 @@
         <li class="included">✔️ Export logs (PDF/CSV)</li>
         <li class="included">✔️ Streak tracking</li>
       </ul>
-      <button (click)="upgrade()">Upgrade – {{ priceLabel }}</button>
+      <button (click)="upgrade()" [disabled]="loading">
+        {{ loading ? 'Processing...' : billingPeriod === 'yearly' ? 'Upgrade – $49.99/year' : 'Upgrade – $4.99/month' }}
+      </button>
     </div>
   </div>
 
