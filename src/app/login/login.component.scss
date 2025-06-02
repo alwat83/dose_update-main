@@ -1,0 +1,159 @@
+:host {
+  color: var(--text-color); // Ensure text uses global variable
+}
+
+.login-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: var(--color-card-bg, #f9f9f9);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-color);
+    }
+
+    input {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: var(--input-bg, #fff);
+      color: var(--text-color);
+    }
+
+    .error-message {
+      font-size: 0.85rem;
+      color: red;
+    }
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: -1rem;
+  }
+
+  .success-message {
+    color: green;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: -1rem;
+  }
+
+  .resend-container {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      background-color: transparent;
+      color: var(--color-primary);
+      border: none;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #1565c0;
+      }
+    }
+  }
+
+  button[type="submit"] {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 999px;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #1565c0;
+    }
+
+    &:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ✅ Dark mode overrides
+body.dark {
+  .login-container {
+    background-color: #222;
+  }
+
+  h2,
+  .form-group label,
+  input {
+    color: var(--text-color-light);
+  }
+
+  input {
+    background-color: #2a2a2a;
+    border-color: #555;
+  }
+
+  .resend-container {
+    color: #ccc;
+
+    button {
+      color: #90caf9;
+
+      &:hover {
+        color: #42a5f5;
+      }
+    }
+  }
+}

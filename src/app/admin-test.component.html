@@ -1,0 +1,18 @@
+<div class="admin-test-container">
+    <h2>DrugBank API Test</h2>
+  
+    <!-- Trigger the runTest() call -->
+    <button (click)="runTest()">Search “aspirin”</button>
+  
+    <!-- Error feedback -->
+    <div *ngIf="errorMessage" class="error-message">
+      ⚠️ {{ errorMessage }}
+    </div>
+  
+    <!-- JSON result dump -->
+    <div *ngIf="testResult" class="result">
+      <h3>Response:</h3>
+      <pre>{{ testResult | json }}</pre>
+    </div>
+  </div>
+  

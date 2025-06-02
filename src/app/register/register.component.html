@@ -1,0 +1,84 @@
+<div class="card in-view register-container">
+  <h2>Register</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+    <div
+      class="form-group"
+      *ngFor="let field of [
+        { id: 'firstName', label: 'First Name', type: 'text' },
+        { id: 'lastName', label: 'Last Name', type: 'text' },
+        { id: 'birthDate', label: 'Birth Date', type: 'date' },
+        { id: 'username', label: 'Username', type: 'text' },
+        { id: 'email', label: 'Email', type: 'email' },
+        { id: 'password', label: 'Password', type: passwordVisible ? 'text' : 'password' },
+        { id: 'confirmPassword', label: 'Confirm Password', type: confirmPasswordVisible ? 'text' : 'password' }
+      ]"
+    >
+      <label [for]="field.id">{{ field.label }}</label>
+
+      <div class="password-wrapper" *ngIf="field.id === 'password'">
+        <input
+          [type]="passwordVisible ? 'text' : 'password'"
+          [id]="field.id"
+          [formControlName]="field.id"
+        />
+        <button type="button" class="toggle-icon" (click)="togglePasswordVisibility()">
+          {{ passwordVisible ? '🙈' : '👁️' }}
+        </button>
+      </div>
+
+      <div class="password-wrapper" *ngIf="field.id === 'confirmPassword'">
+        <input
+          [type]="confirmPasswordVisible ? 'text' : 'password'"
+          [id]="field.id"
+          [formControlName]="field.id"
+        />
+        <button type="button" class="toggle-icon" (click)="toggleConfirmPasswordVisibility()">
+          {{ confirmPasswordVisible ? '🙈' : '👁️' }}
+        </button>
+      </div>
+
+      <input
+        *ngIf="field.id !== 'password' && field.id !== 'confirmPassword'"
+        [type]="field.type"
+        [id]="field.id"
+        [formControlName]="field.id"
+        class="form-control"
+      />
+
+      <div
+        *ngIf="registerForm.get(field.id)?.invalid && (registerForm.get(field.id)?.dirty || registerForm.get(field.id)?.touched)"
+        class="error-message"
+      >
+        <div *ngIf="registerForm.get(field.id)?.errors?.['required']">
+          {{ field.label }} is required.
+        </div>
+        <div *ngIf="field.id === 'email' && registerForm.get(field.id)?.errors?.['email']">
+          Please enter a valid email address.
+        </div>
+        <div *ngIf="field.id === 'password' && registerForm.get(field.id)?.errors?.['minlength']">
+          Password must be at least 6 characters.
+        </div>
+        <div *ngIf="field.id === 'birthDate' && registerForm.get(field.id)?.errors?.['underage']">
+          You must be at least 18 years old.
+        </div>
+      </div>
+    </div>
+
+    <div
+      *ngIf="registerForm.errors?.['mustMatch'] && registerForm.get('confirmPassword')?.touched"
+      class="error-message"
+    >
+      Passwords must match.
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid">
+      Register
+    </button>
+
+    <div class="login-link">
+      Already have an account?
+      <a routerLink="/login">Login here</a>
+    </div>
+  </form>
+</div>

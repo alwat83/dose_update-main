@@ -1,0 +1,65 @@
+<div class="card user-profile-container">
+  <h2>User Profile</h2>
+
+  <!-- ✅ Feedback Messages -->
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+    <!-- Username -->
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" formControlName="username" />
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" />
+    </div>
+
+    <!-- Notifications -->
+    <div class="form-group">
+      <label for="notifications">Notifications</label>
+      <select id="notifications" formControlName="notifications">
+        <option value="enabled">Enabled</option>
+        <option value="disabled">Disabled</option>
+      </select>
+    </div>
+
+    <!-- Daily Reminders Toggle -->
+    <div class="form-group">
+      <label>
+        <input type="checkbox" formControlName="dailyRemindersEnabled" />
+        Enable Daily Reminders
+      </label>
+    </div>
+
+    <!-- Reminder Time (Only show if enabled) -->
+    <div class="form-group" *ngIf="profileForm.get('dailyRemindersEnabled')?.value">
+      <label for="reminderTime">Reminder Time</label>
+      <input type="time" id="reminderTime" formControlName="reminderTime" />
+    </div>
+
+    <!-- Contact Method -->
+    <div class="form-group">
+      <label for="contactMethod">Preferred Contact Method</label>
+      <select id="contactMethod" formControlName="contactMethod">
+        <option value="email">Email</option>
+        <option value="sms">SMS (future)</option>
+      </select>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="form-group toggle-group">
+      <label for="themeToggle">Dark Mode</label>
+      <input type="checkbox" id="themeToggle" (change)="toggleDarkMode()" />
+    </div>
+
+    <button type="submit" [disabled]="profileForm.invalid">Save Changes</button>
+  </form>
+</div>
