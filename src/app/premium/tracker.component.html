@@ -1,0 +1,24 @@
+<div class="tracker-container">
+  <h2>Medication Tracker</h2>
+
+  <!-- Form to log a dose -->
+  <form (ngSubmit)="logDose()" [formGroup]="trackerForm">
+    <label for="medication">Medication Name</label>
+    <input id="medication" formControlName="medication" type="text" required />
+
+    <label for="timestamp">Time Taken</label>
+    <input id="timestamp" formControlName="timestamp" type="datetime-local" required />
+
+    <button type="submit" [disabled]="trackerForm.invalid || loading">
+      {{ loading ? 'Logging...' : 'Log Dose' }}
+    </button>
+  </form>
+
+  <!-- Display logged doses -->
+  <h3>Recent Doses</h3>
+  <ul>
+    <li *ngFor="let dose of doseLogs">
+      {{ dose.medication }} – {{ dose.timestamp.toDate() | date:'short' }}
+    </li>
+  </ul>
+</div>

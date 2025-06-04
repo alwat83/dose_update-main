@@ -7,19 +7,29 @@ import {
   signOut,
   onAuthStateChanged,
   sendEmailVerification,
-  sendPasswordResetEmail,    // ← import this
+  sendPasswordResetEmail,
   updateProfile,
   updateEmail,
   User
 } from '@angular/fire/auth';
-import { BehaviorSubject } from 'rxjs';
+import {
+  Firestore,
+  doc,
+  getDoc,
+  docData
+} from '@angular/fire/firestore';
+import { BehaviorSubject, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
 
-  constructor(private auth: Auth) {
+  constructor(
+    private auth: Auth,
+    private firestore: Firestore
+  ) {
     onAuthStateChanged(this.auth, user => {
       this.currentUserSubject.next(user);
     });
@@ -41,7 +51,6 @@ export class AuthService {
     return signOut(this.auth);
   }
 
-  /** 🔒 New: send a password-reset email */
   sendPasswordReset(email: string) {
     return sendPasswordResetEmail(this.auth, email);
   }
@@ -63,5 +72,17 @@ export class AuthService {
 
   get isLoggedIn(): boolean {
     return !!this.auth.currentUser;
+  }
+
+  getUserPlan() {
+    return this.currentUser$.pipe(
+      switchMap(user => {
+        if (!user) return of('free');
+        const userRef = doc(this.firestore, `users/${user.uid}`);
+        return docData(userRef).pipe(
+          map((data: any) => data?.plan || 'free')
+        );
+      })
+    );
   }
 }
