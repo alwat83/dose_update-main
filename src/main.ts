@@ -19,3 +19,5 @@ bootstrapApplication(AppComponent, {
     provideFunctions(() => getFunctions()),
   ],
 });
+// This code bootstraps the Angular application with Firebase services.
+// It imports necessary modules and initializes Firebase with the provided configuration.
