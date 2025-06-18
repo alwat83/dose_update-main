@@ -16,7 +16,8 @@ import {
   Firestore,
   doc,
   getDoc,
-  docData
+  docData,
+  setDoc
 } from '@angular/fire/firestore';
 import { BehaviorSubject, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -35,8 +36,20 @@ export class AuthService {
     });
   }
 
+  /** ✅ Enhanced: Create Firestore user doc with metadata */
   signUp(email: string, password: string) {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+    return createUserWithEmailAndPassword(this.auth, email, password).then(cred => {
+      const userRef = doc(this.firestore, `users/${cred.user.uid}`);
+      return setDoc(userRef, {
+        email: email,
+        plan: 'free',
+        verified: false,
+        signupSource: 'app_direct',
+        createdAt: new Date(),
+        onboardingStep: 0,
+        reminderEnabled: true
+      }).then(() => cred);
+    });
   }
 
   sendVerificationEmail(user: User) {
@@ -86,3 +99,4 @@ export class AuthService {
     );
   }
 }
+//       response.status(400).json({

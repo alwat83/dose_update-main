@@ -1,4 +1,12 @@
 <div class="card in-view register-container">
+  <!-- ✅ Toast Notifications -->
+  <div class="toast success-toast" *ngIf="successMessage">
+    {{ successMessage }}
+  </div>
+  <div class="toast error-toast" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
   <h2>Register</h2>
 
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">

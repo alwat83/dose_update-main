@@ -1,3 +1,4 @@
+// src/app/register/register.component.ts
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -23,12 +24,16 @@ export class RegisterComponent implements AfterViewInit {
   registerForm: FormGroup;
   @ViewChild('cardRef') cardRef!: ElementRef;
 
-  passwordVisible: boolean = false;
-  confirmPasswordVisible: boolean = false;
-  errorMessage: string = '';
-  successMessage: string = '';
+  passwordVisible = false;
+  confirmPasswordVisible = false;
+  errorMessage = '';
+  successMessage = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.registerForm = this.fb.group(
       {
         firstName: ['', Validators.required],
@@ -61,17 +66,22 @@ export class RegisterComponent implements AfterViewInit {
       const { email, password } = this.registerForm.value;
       this.authService.signUp(email, password)
         .then(userCredential => {
+          console.log('✅ Firestore user document created');
           return this.authService.sendVerificationEmail(userCredential.user).then(() => {
             this.successMessage = '📧 Verification email sent! Please check your inbox.';
             this.errorMessage = '';
-            this.router.navigate(['/login']);
+
+            // 🕒 Delay navigation so toast can appear
+            setTimeout(() => {
+              this.router.navigate(['/login']);
+            }, 2500); // 2.5 seconds should be plenty
           });
         })
         .catch(error => {
           console.error('❌ Firebase Registration Error:', error);
           this.errorMessage = error.message || 'Registration failed.';
         });
-        
+
     } else {
       this.markFormGroupTouched(this.registerForm);
     }

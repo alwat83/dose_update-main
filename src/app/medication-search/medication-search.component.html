@@ -1,29 +1,46 @@
-<div class="card in-view med-search-container">
-  <h2>Search for Medications</h2>
+<div class="medication-search">
+  <h2>Search Medications</h2>
 
-  <div class="search-bar">
-    <input
-      type="text"
-      [(ngModel)]="searchTerm"
-      placeholder="Enter drug name"
-      (input)="searchDrugs()"
-    />
-    <button (click)="searchDrugs()">Search</button>
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="Enter medication name..."
+    (keyup.enter)="searchDrugs()"
+    aria-label="Search term"
+  />
+  <button (click)="searchDrugs()">Search</button>
+
+  <!-- 🔄 Loading spinner -->
+  <div *ngIf="loading" class="loading-spinner">🔄 Loading...</div>
+
+  <!-- ✅ Success toast -->
+  <div *ngIf="trackingMessage" class="toast-message success">
+    {{ trackingMessage }}
   </div>
 
-  <div *ngIf="searchResults.length > 0" class="results-section">
-    <h3>Search Results</h3>
-    <ul class="results-list">
-      <li *ngFor="let result of searchResults">
-        <a [routerLink]="['/drug-details', result.rxcui]" class="pill-button">
-          <strong>{{ result.name }}</strong><br />
-          <span class="result-description">{{ result.description }}</span>
-        </a>
-      </li>
-    </ul>
+  <!-- ❌ Error message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
   </div>
 
-  <div *ngIf="searchResults.length === 0 && searchTerm !== ''" class="no-results">
-    <p>No results found for "<em>{{ searchTerm }}</em>".</p>
+  <!-- 💬 Empty state -->
+  <div *ngIf="!loading && searchResults.length === 0 && !errorMessage && searchTerm">
+    No results found for "{{ searchTerm }}".
   </div>
+
+  <div *ngIf="!loading && searchResults.length === 0 && !errorMessage && !searchTerm">
+    Start typing to search medications.
+  </div>
+
+  <!-- ✅ Results -->
+  <ul *ngIf="searchResults.length > 0" class="results-list">
+    <li *ngFor="let drug of searchResults" class="drug-item">
+      <div class="drug-card">
+        <h4>💊 {{ drug.name }}</h4>
+        <p><strong>RxCUI:</strong> {{ drug.rxcui }}</p>
+        <p>{{ drug.description }}</p>
+        <button (click)="trackMedication(drug)">➕ Track</button>
+      </div>
+    </li>
+  </ul>
 </div>

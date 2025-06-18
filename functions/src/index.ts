@@ -11,8 +11,8 @@ const STRIPE_SECRET_KEY = defineSecret('STRIPE_SECRET_KEY');
 const allowedOrigins = [
   'http://localhost:4200',
   'https://preview.doseninja.com',
-  'https://your-project-id.web.app', // Replace with your Firebase Hosting URL
-  'https://your-project-id.firebaseapp.com', // Replace with your Firebase Hosting URL
+  'https://dose-ninja-final.web.app', // Replace with your Firebase Hosting URL
+  'https://dose-ninja-final.firebaseapp.com', // Replace with your Firebase Hosting URL
 ];
 
 const corsHandler = cors({
@@ -100,8 +100,8 @@ export const createCheckoutSession = onRequest(
           payment_method_types: ['card'],
           customer_email: email,
           line_items: [{ price: priceId, quantity: 1 }],
-          success_url: 'https://your-project-id.web.app/upgrade?status=success', // Replace with your Firebase Hosting URL
-          cancel_url: 'https://your-project-id.web.app/upgrade?status=cancel', // Replace with your Firebase Hosting URL
+          success_url: 'https://preview.doseninja.com/upgrade-success', // Replace with your Firebase Hosting URL
+          cancel_url: 'https://preview.doseninja.com/upgrade-cancel', // Replace with your Firebase Hosting URL
         });
 
         response.json({ data: { url: session.url } });

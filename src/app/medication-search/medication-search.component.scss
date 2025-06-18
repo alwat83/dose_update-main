@@ -1,66 +1,122 @@
-.med-search-container {
-  max-width: 700px;
-  margin: 2rem auto;
+.medication-search {
   padding: 2rem;
-}
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-color);
 
-.search-bar {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-
-  input {
-    flex: 1;
-    padding: 0.7rem 1rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
-
-  button {
-    background-color: var(--color-primary);
-    color: white;
-    border: none;
-    border-radius: 999px;
-    padding: 0.6rem 1.5rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background-color: #1565c0;
-    }
-  }
-}
-
-.results-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 1rem;
-
-  li {
+  h2 {
+    font-size: 1.8rem;
     margin-bottom: 1rem;
   }
 
-  a {
-    display: block;
-    text-decoration: none;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding: 1rem;
+  input[type="text"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.1);
     color: var(--text-color);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: all 0.2s ease;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  button {
+    padding: 0.6rem 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #4fc3f7;
+    color: #fff;
+    margin-left: 0.5rem;
+    transition: background 0.2s ease-in-out;
 
     &:hover {
-      background-color: var(--secondary-color);
-      color: white;
+      background: #0288d1;
     }
   }
 
-  .result-description {
-    font-size: 0.9rem;
-    color: var(--text-color-light);
+  .loading-spinner,
+  .error-message,
+  .toast-message {
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+
+  .toast-message.success {
+    color: #2e7d32;
+  }
+
+  .error-message {
+    color: #d32f2f;
+  }
+
+  .results-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+  }
+
+  .drug-item {
+    animation: fadeInUp 0.4s ease forwards;
+    opacity: 0;
+  }
+
+  .drug-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+    color: var(--text-color);
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    h4 {
+      margin-top: 0;
+      margin-bottom: 0.3rem;
+      font-size: 1.2rem;
+    }
+
+    p {
+      margin: 0.3rem 0;
+    }
+
+    button {
+      margin-top: 0.6rem;
+      background: #66bb6a;
+
+      &:hover {
+        background: #388e3c;
+      }
+    }
+  }
+
+  // Animation for card entrance
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  // 🌗 Dark/light theme variables
+  :host-context(body.light-theme) {
+    --text-color: #111;
+  }
+
+  :host-context(body.dark-theme) {
+    --text-color: #f5f5f5;
   }
 }
-

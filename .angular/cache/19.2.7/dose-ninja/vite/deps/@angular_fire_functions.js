@@ -1,32 +1,27 @@
 import {
+  AppCheckInstances,
   AuthInstances
-} from "./chunk-SQK2MGZ2.js";
-import {
-  AppCheckInstances
-} from "./chunk-BRB5RAVL.js";
-import "./chunk-HZGZZMAQ.js";
-import {
-  FirebaseApp,
-  FirebaseApps,
-  VERSION,
-  ɵAngularFireSchedulers,
-  ɵgetAllInstancesOf,
-  ɵgetDefaultInstanceOf,
-  ɵzoneWrap
-} from "./chunk-2SJNNMHX.js";
+} from "./chunk-4KB5BNKS.js";
 import {
   Component,
+  FirebaseApp,
+  FirebaseApps,
   FirebaseError,
+  VERSION,
   _getProvider,
   _isFirebaseServerApp,
   _registerComponent,
   getApp,
   getDefaultEmulatorHostnameAndPort,
   getModularInstance,
-  registerVersion
-} from "./chunk-NA6E4THD.js";
-import "./chunk-3HSLJT56.js";
-import "./chunk-GDI4RWAM.js";
+  registerVersion,
+  ɵAngularFireSchedulers,
+  ɵgetAllInstancesOf,
+  ɵgetDefaultInstanceOf,
+  ɵzoneWrap
+} from "./chunk-LT4NV4ZM.js";
+import "./chunk-ZRZLLBUK.js";
+import "./chunk-3XQ6LG7Y.js";
 import {
   InjectionToken,
   Injector,
@@ -37,19 +32,17 @@ import {
   setClassMetadata,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-OFJG77I2.js";
-import "./chunk-IXECIEEC.js";
-import "./chunk-D44CCVYD.js";
+} from "./chunk-NZBA7RWA.js";
+import "./chunk-NUWUJFVC.js";
+import "./chunk-FBVV7HBG.js";
 import {
+  __async,
   concatMap,
   distinct,
   from,
   map,
   timer
-} from "./chunk-KJM342HF.js";
-import {
-  __async
-} from "./chunk-FVETPLIC.js";
+} from "./chunk-JOIKPE53.js";
 
 // node_modules/@firebase/functions/dist/esm/index.esm2017.js
 var LONG_TYPE = "type.googleapis.com/google.protobuf.Int64Value";

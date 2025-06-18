@@ -10,9 +10,11 @@ import { DosageCorrectionComponent } from './dosage-correction/dosage-correction
 import { HomeComponent } from '../home/home.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { AdminTestComponent } from './admin-test.component'; 
+import { AdminTestComponent } from './admin-test.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { UpgradeComponent } from './upgrade/upgrade.component';
+import { UpgradeSuccessComponent } from './upgrade-success/upgrade-success.component'; // ✅ New
+import { UpgradeCancelComponent } from './upgrade-cancel/upgrade-cancel.component';   // ✅ New
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,8 +27,10 @@ export const routes: Routes = [
   { path: 'medication-search', component: MedicationSearchComponent },
   { path: 'dosage-correction', component: DosageCorrectionComponent },
   { path: 'upgrade', component: UpgradeComponent },
-  { path: 'privacy-policy', component: PrivacyPolicyComponent }, // ✅ Comma added here
-  { path: 'admin-test', component: AdminTestComponent }, 
-  { path: 'forgot-password', component: ForgotPasswordComponent }, 
+  { path: 'upgrade-success', component: UpgradeSuccessComponent }, // ✅ New route
+  { path: 'upgrade-cancel', component: UpgradeCancelComponent },   // ✅ New route
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'admin-test', component: AdminTestComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: '**', redirectTo: '' }
 ];

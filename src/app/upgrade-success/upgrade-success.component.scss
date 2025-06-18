@@ -1,0 +1,27 @@
+.upgrade-result {
+  text-align: center;
+  margin-top: 3rem;
+
+  &.success {
+    color: #2e7d32;
+  }
+
+  &.cancel {
+    color: #c62828;
+  }
+
+  .button {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+}
+.upgrade-result h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
