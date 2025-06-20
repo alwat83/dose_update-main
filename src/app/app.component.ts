@@ -3,12 +3,13 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './auth/auth.service';
 import { Router } from '@angular/router';
+import { ToastComponent } from './components/toast/toast.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, ToastComponent],
   standalone: true,
 })
 export class AppComponent implements OnInit {

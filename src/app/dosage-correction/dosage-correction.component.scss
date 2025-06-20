@@ -1,74 +1,172 @@
+/* Base container */
 .correction-form-container {
-  max-width: 600px;
-  margin: 3rem auto;
   padding: 2rem;
-  text-align: center;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  color: #f0f0f0;
+  transition: all 0.3s ease;
 
-  h2 {
-    margin-bottom: 2rem;
+  @media (max-width: 600px) {
+    padding: 1.25rem;
   }
 }
 
-.correction-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+/* 🌞 Light Theme Overrides (when .light-theme is on <body>) */
+body.light .correction-form-container {
+  background: #ffffff;
+  color: #111;
 
-  .form-group {
-    text-align: left;
-
-    label {
-      font-weight: 500;
-      display: block;
-      margin-bottom: 0.25rem;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-
-    .error-message {
-      color: red;
-      font-size: 0.85rem;
-      margin-top: 0.3rem;
-    }
+  .section-title,
+  label,
+  input,
+  select,
+  textarea,
+  .form-control {
+    color: #111;
   }
 
-  button {
-    background-color: var(--color-primary);
-    color: white;
-    padding: 0.6rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 999px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  .form-control {
+    background: #f9f9f9;
+    border: 1px solid #ccc;
 
-    &:hover {
-      background-color: #1565c0;
+    &::placeholder {
+      color: #555;
+    }
+
+    &:focus {
+      border-color: #1abc9c;
+      box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.3);
     }
 
     &:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
+      color: #555;
+      background: #eee;
     }
+  }
+
+  textarea.form-control {
+    background: #fff;
+  }
+
+  .btn-glass {
+    background: #1abc9c;
+    color: #fff;
+    border: none;
+
+    &:hover {
+      background: #169c84;
+    }
+
+    &:disabled {
+      background: #eee;
+      color: #555;
+    }
+  }
+
+  .success-message {
+    background-color: #1abc9c;
+    color: #fff;
+  }
+
+  .error-message {
+    color: #d32f2f;
   }
 }
 
+/* Section header */
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+/* Form layout */
+.correction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Input groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .form-control {
+    padding: 0.75rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+
+    &::placeholder {
+      color: #ccc;
+    }
+
+    &:focus {
+      border-color: #9fefc4;
+      box-shadow: 0 0 0 2px rgba(159, 239, 196, 0.4);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+
+  textarea.form-control {
+    resize: vertical;
+  }
+}
+
+/* Button styling */
+.btn-glass {
+  padding: 0.75rem 1.5rem;
+  background: rgba(159, 239, 196, 0.15);
+  border: 1px solid rgba(159, 239, 196, 0.4);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background: rgba(159, 239, 196, 0.3);
+    transform: scale(1.03);
+  }
+
+  &:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: #555;
+    cursor: not-allowed;
+  }
+}
+
+/* Feedback messages */
 .success-message {
   margin-top: 1.5rem;
-  color: green;
+  background-color: #1f883d;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  text-align: center;
   font-weight: 500;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
 }

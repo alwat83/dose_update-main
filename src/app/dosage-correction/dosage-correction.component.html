@@ -1,7 +1,8 @@
 <div class="card in-view correction-form-container">
-  <h2>Dosage Correction</h2>
+  <h2 class="section-title">💊 Dosage Correction</h2>
 
   <form [formGroup]="correctionForm" (ngSubmit)="onSubmit()" class="correction-form">
+    <!-- Select Medication -->
     <div class="form-group">
       <label for="drug">Select Medication</label>
       <select id="drug" formControlName="drug" class="form-control">
@@ -11,6 +12,7 @@
       </select>
     </div>
 
+    <!-- Readonly Medication Name -->
     <div class="form-group">
       <label for="medicationName">Medication Name</label>
       <input
@@ -22,6 +24,7 @@
       />
     </div>
 
+    <!-- Editable Dosage -->
     <div class="form-group">
       <label for="dosage">Dosage</label>
       <input
@@ -29,27 +32,37 @@
         id="dosage"
         formControlName="dosage"
         class="form-control"
+        placeholder="e.g., 250 mg twice daily"
       />
       <div
         class="error-message"
         *ngIf="correctionForm.get('dosage')?.invalid && (correctionForm.get('dosage')?.dirty || correctionForm.get('dosage')?.touched)"
       >
         <div *ngIf="correctionForm.get('dosage')?.errors?.['required']">
-          Dosage is required.
+          ⚠️ Dosage is required.
         </div>
       </div>
     </div>
 
+    <!-- Notes -->
     <div class="form-group">
-      <label for="notes">Notes</label>
-      <textarea id="notes" formControlName="notes" class="form-control"></textarea>
+      <label for="notes">Additional Notes</label>
+      <textarea
+        id="notes"
+        formControlName="notes"
+        class="form-control"
+        rows="3"
+        placeholder="Why are you suggesting this correction?"
+      ></textarea>
     </div>
 
-    <button type="submit" [disabled]="correctionForm.invalid">
-      Submit Correction
+    <!-- Submit -->
+    <button type="submit" [disabled]="correctionForm.invalid" class="btn-glass">
+      🚀 Submit Correction
     </button>
   </form>
 
+  <!-- Success Feedback -->
   <div *ngIf="submitted" class="success-message">
     ✅ Dosage correction submitted successfully!
   </div>
