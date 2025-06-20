@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Firestore, collection, addDoc, serverTimestamp } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { ToastService } from '../services/toast.service';
 import { Drug } from '../models/drug.model';
+import { TrackingService } from '../services/tracking.service'; // 👈 Add this
 
 @Component({
   selector: 'app-dosage-correction',
@@ -11,21 +12,21 @@ import { Drug } from '../models/drug.model';
   templateUrl: './dosage-correction.component.html',
   styleUrls: ['./dosage-correction.component.scss'],
   imports: [
-    CommonModule,        // Enables *ngIf, *ngFor
-    ReactiveFormsModule, // Enables [formGroup], formControlName
-    FormsModule          // Enables [ngValue], two-way binding
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
-export class DosageCorrectionComponent {
+export class DosageCorrectionComponent implements OnInit {
   correctionForm: FormGroup;
   submitted = false;
-allDrugs: Drug[] = [];
- // Populate this appropriately
+  allDrugs: Drug[] = [];
 
   constructor(
     private fb: FormBuilder,
     private firestore: Firestore,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private trackingService: TrackingService // 👈 Inject service
   ) {
     this.correctionForm = this.fb.group({
       drug: [null, Validators.required],
@@ -36,6 +37,12 @@ allDrugs: Drug[] = [];
 
     this.correctionForm.get('drug')?.valueChanges.subscribe((drug: any) => {
       this.correctionForm.patchValue({ medicationName: drug?.name || '' });
+    });
+  }
+
+  ngOnInit(): void {
+    this.trackingService.getTrackedMedications().subscribe((drugs) => {
+      this.allDrugs = drugs;
     });
   }
 
