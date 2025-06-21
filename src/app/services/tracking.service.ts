@@ -20,6 +20,7 @@ export interface TrackedMedication {
   rxcui: string;
   description: string;
   addedAt: any; // Timestamp or Date
+  frequency: string;
 }
 
 @Injectable({ providedIn: 'root' })

@@ -21,6 +21,7 @@ export class MedicationSearchComponent implements OnInit {
   loading: boolean = false;
   errorMessage: string = '';
   trackingMessage: string = '';
+  frequency: string = 'Once daily'; // ✅ Default frequency option
 
   constructor(
     private http: HttpClient,
@@ -87,7 +88,8 @@ export class MedicationSearchComponent implements OnInit {
           name: drug.name,
           description: drug.description,
           rxcui: drug.rxcui,
-          addedAt: new Date()
+          addedAt: new Date(),
+          frequency: this.frequency // ✅ Include selected frequency
         };
 
         this.trackingService.addTrackedMedication(medication)

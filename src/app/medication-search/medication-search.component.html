@@ -39,6 +39,22 @@
         <h4>💊 {{ drug.name }}</h4>
         <p><strong>RxCUI:</strong> {{ drug.rxcui }}</p>
         <p>{{ drug.description }}</p>
+
+        <!-- 📅 Frequency selection -->
+        <label for="frequency-{{ drug.rxcui }}">Frequency:</label>
+        <select
+          id="frequency-{{ drug.rxcui }}"
+          [(ngModel)]="frequency"
+          aria-label="Select frequency"
+        >
+          <option>Once daily</option>
+          <option>Twice daily</option>
+          <option>Three times daily</option>
+          <option>As needed</option>
+          <option>Weekly</option>
+          <option>Custom</option>
+        </select>
+
         <button (click)="trackMedication(drug)">➕ Track</button>
       </div>
     </li>

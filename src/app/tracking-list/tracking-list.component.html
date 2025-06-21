@@ -1,19 +1,25 @@
 <div class="tracking-list">
   <h2>Your Tracked Medications</h2>
 
+  <!-- 🔄 Loading indicator -->
   <div *ngIf="loading" class="loading">🔄 Loading your tracked meds...</div>
+
+  <!-- ❌ Error display -->
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
+  <!-- 🙅 Empty state -->
   <div *ngIf="!loading && trackedMedications.length === 0">
     <p>No medications are currently being tracked.</p>
   </div>
 
+  <!-- ✅ Medications list -->
   <ul *ngIf="trackedMedications.length > 0">
     <li *ngFor="let med of trackedMedications" class="med-item">
       <div class="med-card">
         <h4>{{ med.name }}</h4>
         <p><strong>RxCUI:</strong> {{ med.rxcui }}</p>
         <p>{{ med.description }}</p>
+        <p><strong>Frequency:</strong> {{ med.frequency || 'Not specified' }}</p>
         <p><em>Added: {{ med.addedAt.toDate?.() | date:'short' }}</em></p>
         <button (click)="removeFromTracking(med)">🗑️ Remove</button>
       </div>
